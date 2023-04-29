@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ Create by  on 4/21/23, 12:26 PM
+  ~ Last modified 4/21/23, 12:26 PM
+  -->
+
+<resources>
+    <dimen name="bottom_tab_height">73dp</dimen>
+    <dimen name="bottom_tab_indicator_margin_bottom">62dp</dimen>
+    <dimen name="bottom_tab_indicator_margin_horizontal">33dp</dimen>
+    <dimen name="tab_indicator_size">64dp</dimen>
+    <dimen name="header_margin_left">25dp</dimen>
+    <dimen name="header_text_size">25sp</dimen>
+    <dimen name="header_margin_top">35dp</dimen>
+    <dimen name="settings_items_margin_horizontal">31dp</dimen>
+    <dimen name="settings_content_margin_top">121dp</dimen>
+    <dimen name="settings_not_vibration_margin_top">36dp</dimen>
+    <dimen name="settings_user_action_margin_top">21dp</dimen>
+    <dimen name="settings_icon_margin">16dp</dimen>
+    <dimen name="settings_unlock_everything_text_size">17sp</dimen>
+
+
+
+    <dimen name="tab_text_size">10dp</dimen>
+    <dimen name="intensity_top_button_margin_top">27dp</dimen>
+    <dimen name="intensity_margin_horizontal">25dp</dimen>
+    <dimen name="intensity_big_button_margin_top">55dp</dimen>
+</resources>

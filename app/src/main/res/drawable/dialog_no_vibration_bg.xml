@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by  on 3/29/22 2:41 PM
+  ~ Copyright (c) 2022 . All rights reserved.
+  ~ Last modified 3/29/22 1:58 PM
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:endColor="#C33CC5"
+        android:startColor="#F73EAF" />
+    <stroke
+        android:width="1dp"
+        android:color="#80FFFFFF" />
+    <corners android:radius="36dp" />
+</shape>

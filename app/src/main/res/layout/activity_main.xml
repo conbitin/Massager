@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ Create by  on 4/21/23, 10:16 AM
+  ~ Last modified 4/21/23, 10:16 AM
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottom_tab_height" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/secondPrimaryColor"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/primaryColor" />
+
+    <FrameLayout
+        android:id="@+id/containerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:animateLayoutChanges="true" />
+
+    <com.android.vibrate.massager.view.custom.AppTabView
+        android:id="@+id/appTabView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_tab_height"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_tab_height"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tabSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/settings"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tab_text_size" />
+
+            <TextView
+                android:id="@+id/tabIntensity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/intensity"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tab_text_size" />
+
+            <TextView
+                android:id="@+id/tabPattern"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:text="@string/pattern"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tab_text_size" />
+        </LinearLayout>
+    </com.android.vibrate.massager.view.custom.AppTabView>
+
+
+    <com.android.vibrate.massager.view.custom.AppTabIndicator
+        android:id="@+id/appTabIndicator"
+        android:layout_width="@dimen/tab_indicator_size"
+        android:layout_height="@dimen/tab_indicator_size"
+        android:layout_gravity="left|bottom"
+        android:layout_marginHorizontal="@dimen/bottom_tab_indicator_margin_horizontal"
+        android:layout_marginBottom="@dimen/bottom_tab_indicator_margin_bottom" />
+
+    <FrameLayout
+        android:id="@+id/splashView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_background">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </FrameLayout>
+</FrameLayout>

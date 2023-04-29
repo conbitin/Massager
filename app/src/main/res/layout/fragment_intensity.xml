@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ Create by  on 4/21/23, 11:48 AM
+  ~ Last modified 4/21/23, 11:48 AM
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/intensity_margin_horizontal"
+            android:layout_marginTop="@dimen/intensity_top_button_margin_top">
+
+            <ImageView
+                android:id="@+id/musicButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|left"
+                android:src="@drawable/ic_music_button" />
+
+            <TextView
+                android:id="@+id/notVibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="90px"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/not_vibrating"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/unlockButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/ic_unlock_button" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="308dp"
+            android:layout_height="308dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/intensity_big_button_margin_top">
+
+            <ImageView
+                android:id="@+id/animationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_big_button_on_animation"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/bg_big_button_state_selector" />
+
+            <FrameLayout
+                android:id="@+id/guideToStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:text="@string/intensity_press_the_button"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:gravity="center"
+                    android:text="@string/intensity_to_start_vibration"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/modeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/mode"
+                    android:textColor="#B5FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginTop="4dp">
+                    <TextView
+                        android:id="@+id/modeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:gravity="center"
+                        android:text="@string/undefined"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/modeIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_music_icon"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_switcher_bg"
+        android:gravity="center_vertical"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/speed_low"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/ic_switcher_item_selector"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:minHeight="40dp"
+            android:text="@string/slow"
+            android:textColor="@color/switcher_text_color_selector"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/speed_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/ic_switcher_item_selector"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:minHeight="40dp"
+            android:text="@string/medium"
+            android:textColor="@color/switcher_text_color_selector"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/speed_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/ic_switcher_item_selector"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:minHeight="40dp"
+            android:text="@string/fast"
+            android:textColor="@color/switcher_text_color_selector"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_gravity="left"
+            android:text="@string/soft"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            android:textStyle="bold"
+            android:text="@string/hard"
+            />
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:layout_marginTop="24dp"
+            android:id="@+id/seekBarVibration"
+            style="@style/soundSeekbarProgressStyle"
+            android:layout_gravity="center_horizontal"
+            android:max="20"
+            android:min="1"
+            android:progress="10" />
+    </FrameLayout>
+
+
+</LinearLayout>

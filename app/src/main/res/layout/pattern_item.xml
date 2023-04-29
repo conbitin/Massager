@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ Create by  on 4/24/23, 10:13 AM
+  ~ Last modified 4/24/23, 10:13 AM
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?selectableItemBackground">
+
+    <FrameLayout
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/pattern_img_bg">
+
+        <ImageView
+            android:id="@+id/patternImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter" />
+        <ImageView
+            android:id="@+id/patternLock"
+            android:layout_width="12dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_gravity="right|top"
+            android:scaleType="center"
+            android:src="@drawable/ic_pattern_lock"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/patternName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="74dp"
+        android:gravity="center"
+        android:text="@string/undefined"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+</FrameLayout>

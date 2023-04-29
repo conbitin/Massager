@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ Create by  on 4/21/23, 12:26 PM
+  ~ Last modified 4/21/23, 12:26 PM
+  -->
+
+<resources>
+    <dimen name="bottom_tab_height">60dp</dimen>
+    <dimen name="bottom_tab_indicator_margin_bottom">52dp</dimen>
+    <dimen name="bottom_tab_indicator_margin_horizontal">32dp</dimen>
+    <dimen name="tab_indicator_size">50dp</dimen>
+</resources>

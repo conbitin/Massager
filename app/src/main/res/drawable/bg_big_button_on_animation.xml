@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by  on 1/25/22 5:56 PM
+  ~ Copyright (c) 2022 . All rights reserved.
+  ~ Last modified 1/6/22 4:43 PM
+  -->
+
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/bg_big_button_on_0"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_1"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_4"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_1"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/bg_big_button_on_0"
+        android:duration="100" />
+</animation-list>

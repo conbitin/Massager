@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Massager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondPrimaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondPrimaryColor</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="android:navigationBarColor">#FF009A</item>
+        <item name="android:windowBackground">@drawable/app_background</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="soundSeekbarProgressStyle">
+        <item name="android:progressDrawable">@drawable/seekbar_progress_bg</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:splitTrack">false</item>
+        <item name="android:thumbOffset">0dp</item>
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+    </style>
+</resources>

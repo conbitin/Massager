@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:left="0dp"
+        android:right="0dp"
+        android:gravity="center_vertical|fill_horizontal">
+        <shape
+            android:shape="rectangle">
+            <corners android:radius="6dp" />
+            <size android:height="6dp" />
+            <solid android:color="#52FFFFFF" />
+        </shape>
+    </item>
+    <item
+        android:id="@android:id/progress"
+        android:gravity="center_vertical"
+        android:left="0dp"
+        android:right="0dp">
+        <clip
+            android:height="6dp"
+            android:drawable="@drawable/seekbar_bg" />
+    </item>
+</layer-list>
