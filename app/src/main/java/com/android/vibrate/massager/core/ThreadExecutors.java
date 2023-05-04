@@ -24,54 +24,54 @@ public class ThreadExecutors {
     private static final ThreadExecutors ourInstance = new ThreadExecutors();
 
     public static ThreadExecutors getInstance() {
-        return ourInstance;
+        return ThreadExecutors.ourInstance;
     }
 
-    private Executor diskIO;
-    private Executor networkIO;
-    private Executor mainThread;
-    private Executor workerThread;
+    private final Executor diskIO;
+    private final Executor networkIO;
+    private final Executor mainThread;
+    private final Executor workerThread;
 
     private ThreadExecutors() {
-        diskIO = Executors.newSingleThreadExecutor();
-        networkIO = Executors.newFixedThreadPool(THREAD_POOL_SIZE_NETWORK);
-        mainThread = new MainThreadExecutor();
-        workerThread = new ThreadPoolExecutor(
-                NUMBER_OF_CORES * 2,
-                NUMBER_OF_CORES * 2,
+        this.diskIO = Executors.newSingleThreadExecutor();
+        this.networkIO = Executors.newFixedThreadPool(ThreadExecutors.THREAD_POOL_SIZE_NETWORK);
+        this.mainThread = new MainThreadExecutor();
+        this.workerThread = new ThreadPoolExecutor(
+                ThreadExecutors.NUMBER_OF_CORES * 2,
+                ThreadExecutors.NUMBER_OF_CORES * 2,
                 60L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>());
     }
 
     public Executor getDiskIO() {
-        return diskIO;
+        return this.diskIO;
     }
 
     public Executor getNetworkIO() {
-        return networkIO;
+        return this.networkIO;
     }
 
     public Executor getMainThread() {
-        return mainThread;
+        return this.mainThread;
     }
 
     public Executor getWorkerThread() {
-        return workerThread;
+        return this.workerThread;
     }
 
-    public static void execute(Where where, Runnable command) {
+    public static void execute(final Where where, final Runnable command) {
         switch (where) {
             case DISK:
-                getInstance().getDiskIO().execute(command);
+                ThreadExecutors.getInstance().getDiskIO().execute(command);
                 break;
             case NETWORK:
-                getInstance().getNetworkIO().execute(command);
+                ThreadExecutors.getInstance().getNetworkIO().execute(command);
                 break;
             case WORKER:
-                getInstance().getWorkerThread().execute(command);
+                ThreadExecutors.getInstance().getWorkerThread().execute(command);
                 break;
             case MAIN:
-                getInstance().getMainThread().execute(command);
+                ThreadExecutors.getInstance().getMainThread().execute(command);
                 break;
         }
     }
@@ -81,11 +81,11 @@ public class ThreadExecutors {
     }
 
     private class MainThreadExecutor implements Executor {
-        private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+        private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
         @Override
-        public void execute(Runnable command) {
-            mainThreadHandler.post(command);
+        public void execute(final Runnable command) {
+            this.mainThreadHandler.post(command);
         }
     }
 }

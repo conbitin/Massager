@@ -14,21 +14,23 @@ import androidx.annotation.NonNull;
 import com.android.vibrate.massager.databinding.DialogNoVibrationGuideBinding;
 
 public class NoVibrationDialog extends BaseDialog {
-    public NoVibrationDialog(@NonNull Activity activity) {
+    public NoVibrationDialog(@NonNull final Activity activity) {
         super(activity);
-        DialogNoVibrationGuideBinding binding = DialogNoVibrationGuideBinding.inflate(activity.getLayoutInflater());
-        setContentView(binding.getRoot());
+        final DialogNoVibrationGuideBinding binding = DialogNoVibrationGuideBinding.inflate(activity.getLayoutInflater());
+        this.setContentView(binding.getRoot());
 
-        binding.backButton.setOnClickListener(view -> { dismiss(); });
-        binding.gotItButton.setOnClickListener(view -> {dismiss(); });
+        binding.backButton.setOnClickListener(view -> {
+            this.dismiss(); });
+        binding.gotItButton.setOnClickListener(view -> {
+            this.dismiss(); });
         binding.goToSettings.setOnClickListener(view -> {
-            Intent intent = new Intent(android.provider.Settings.ACTION_SOUND_SETTINGS);
+            final Intent intent = new Intent(android.provider.Settings.ACTION_SOUND_SETTINGS);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(intent);
-            dismiss();
+            this.dismiss();
         });
 
-        setCancelable(true);
+        this.setCancelable(true);
     }
 
 }

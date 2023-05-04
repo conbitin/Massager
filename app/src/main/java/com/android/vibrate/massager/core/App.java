@@ -4,21 +4,21 @@ import android.app.Application;
 
 public class App extends Application {
 
-    private static App sInstance = null;
+    private static App sInstance;
     ApplicationComponent appComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sInstance = this;
-        appComponent = DaggerApplicationComponent.builder().build();
+        App.sInstance = this;
+        this.appComponent = DaggerApplicationComponent.builder().build();
     }
 
     public static App self() {
-        return sInstance;
+        return App.sInstance;
     }
 
     public ApplicationComponent getAppComponent() {
-        return appComponent;
+        return this.appComponent;
     }
 }

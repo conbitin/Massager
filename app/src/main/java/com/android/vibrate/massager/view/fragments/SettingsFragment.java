@@ -22,21 +22,26 @@ public class SettingsFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = FragmentSettingsBinding.inflate(inflater, container, false);
-        mBinding.notVibration.setOnClickListener(view -> { sendEvent(Event.EVENT_SHOW_NOT_VIBRATION);});
-        mBinding.unlockEverything.setOnClickListener(view -> { sendEvent(Event.EVENT_SHOW_UNLOCK_EVERYTHING);});
-        mBinding.rateTheApp.setOnClickListener(view -> { sendEvent(Event.EVENT_SHOW_RATE_THE_APP);});
-        mBinding.shareTheApp.setOnClickListener(view -> { sendEvent(Event.EVENT_SHOW_SHARE_THE_APP);});
-        mBinding.sendFeedback.setOnClickListener(view -> { sendEvent(Event.EVENT_SHOW_SEND_FEEDBACK);});
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+        this.mBinding = FragmentSettingsBinding.inflate(inflater, container, false);
+        this.mBinding.notVibration.setOnClickListener(view -> {
+            this.sendEvent(Event.EVENT_SHOW_NOT_VIBRATION);});
+        this.mBinding.unlockEverything.setOnClickListener(view -> {
+            this.sendEvent(Event.EVENT_SHOW_UNLOCK_EVERYTHING);});
+        this.mBinding.rateTheApp.setOnClickListener(view -> {
+            this.sendEvent(Event.EVENT_SHOW_RATE_THE_APP);});
+        this.mBinding.shareTheApp.setOnClickListener(view -> {
+            this.sendEvent(Event.EVENT_SHOW_SHARE_THE_APP);});
+        this.mBinding.sendFeedback.setOnClickListener(view -> {
+            this.sendEvent(Event.EVENT_SHOW_SEND_FEEDBACK);});
 
-        return mBinding.getRoot();
+        return this.mBinding.getRoot();
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mBinding = null;
+        this.mBinding = null;
     }
 }

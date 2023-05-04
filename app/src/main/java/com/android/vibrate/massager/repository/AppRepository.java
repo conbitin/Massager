@@ -19,19 +19,19 @@ public interface AppRepository {
      * Vibration intensity: low.
      * @hide
      */
-    public static final float VIBRATION_SPEED_LOW = 2f;
+    float VIBRATION_SPEED_LOW = 2f;
 
     /**
      * Vibration intensity: medium.
      * @hide
      */
-    public static final float VIBRATION_SPEED_MEDIUM = 1f;
+    float VIBRATION_SPEED_MEDIUM = 1f;
 
     /**
      * Vibration intensity: high.
      * @hide
      */
-    public static final float VIBRATION_SPEED_HIGH = 0.5f;
+    float VIBRATION_SPEED_HIGH = 0.5f;
 
     MutableLiveData<Boolean> startButtonStateData();
     void toggleVibrationState();
@@ -52,7 +52,7 @@ public interface AppRepository {
     void updateSelectedPattern(Pattern pattern);
     Pattern getSelectedPattern();
 
-    public MutableLiveData<Music> selectedMusicData();
-    public void updateSelectedMusic(Music music);
-    public Music getSelectedMusic();
+    MutableLiveData<Music> selectedMusicData();
+    void updateSelectedMusic(Music music);
+    Music getSelectedMusic();
 }

@@ -38,76 +38,76 @@ import java.util.Observer;
 public class ActionHandler {
     private static final String TAG = ActionHandler.class.getSimpleName();
 
-    public static void share(Context context) {
+    public static void share(final Context context) {
         if (context == null) return;
         try {
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            final Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.app_name));
-            String urlForSharing = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n";
+            final String urlForSharing = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, urlForSharing);
             context.startActivity(Intent.createChooser(shareIntent, "choose one"));
-        } catch (Exception e) {
-            Log.wtf(TAG, "share handle error", e);
+        } catch (final Exception e) {
+            Log.wtf(ActionHandler.TAG, "share handle error", e);
         }
     }
 
-    public static void rateApp(Context context) {
-        Uri uri = Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID);
-        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+    public static void rateApp(final Context context) {
+        final Uri uri = Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID);
+        final Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         try {
             context.startActivity(goToMarket);
-        } catch (ActivityNotFoundException e) {
-            Log.wtf(TAG, "rateUpp handle error, device lacks google play app???", e);
+        } catch (final ActivityNotFoundException e) {
+            Log.wtf(ActionHandler.TAG, "rateUpp handle error, device lacks google play app???", e);
             try {
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
-            } catch (Exception ex) {
-                Log.wtf(TAG, "rateUpp handle error", ex);
+            } catch (final Exception ex) {
+                Log.wtf(ActionHandler.TAG, "rateUpp handle error", ex);
             }
         }
     }
 
-    public static void sendFeedback(Activity activity) {
+    public static void sendFeedback(final Activity activity) {
         try {
-            Intent intent = new Intent(Intent.ACTION_SEND);
+            final Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setData(Uri.parse("mailto:"));
             intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"abc@gmail.com"});
             intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback about " + activity.getString(R.string.app_name));
             intent.putExtra(Intent.EXTRA_TEXT, "");
             activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.settings_send_feedback)));
-        } catch (Exception e) {
-            Log.wtf(TAG, "sendFeedback handle error, device lacks email app???", e);
+        } catch (final Exception e) {
+            Log.wtf(ActionHandler.TAG, "sendFeedback handle error, device lacks email app???", e);
         }
     }
 
-    public static void noVibration(Activity activity) {
-        Dialog dialog = new NoVibrationDialog(activity);
+    public static void noVibration(final Activity activity) {
+        final Dialog dialog = new NoVibrationDialog(activity);
         dialog.show();
     }
 
-    public static void createVibration(Activity activity) {
-        CreationPatternDialog dialog = new CreationPatternDialog(activity);
+    public static void createVibration(final Activity activity) {
+        final CreationPatternDialog dialog = new CreationPatternDialog(activity);
         dialog.show();
     }
 
-    public static void unlockVibration(Context context, String patternName) {
-        Intent intent = new Intent(context, UnlockPatternActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    public static void unlockVibration(final Context context, final String patternName) {
+        final Intent intent = new Intent(context, UnlockPatternActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("PATTERN_NAME", patternName);
         context.startActivity(intent);
     }
 
-    public static void unlockEverything(Context context) {
-        Intent intent = new Intent(context, UnlockEverythingActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    public static void unlockEverything(final Context context) {
+        final Intent intent = new Intent(context, UnlockEverythingActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
-    public static void musicChooser(Context context) {
-        Intent intent = new Intent(context, MusicActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    public static void musicChooser(final Context context) {
+        final Intent intent = new Intent(context, MusicActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 

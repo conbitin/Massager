@@ -16,5 +16,5 @@ import dagger.Module;
 @Module
 public interface RepositoryModule {
     @Binds
-    public AppRepository provideAppRepository(AppRepositoryImp appRepositoryImp);
+    AppRepository provideAppRepository(AppRepositoryImp appRepositoryImp);
 }

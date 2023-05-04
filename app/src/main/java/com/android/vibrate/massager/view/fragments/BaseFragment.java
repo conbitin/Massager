@@ -27,7 +27,7 @@ public class BaseFragment extends Fragment implements Observer {
     AppViewModel mAppViewModel;
 
     @Override
-    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.self().getAppComponent().inject(this);
         AppObservable.getInstance().addObserver(this);
@@ -40,17 +40,17 @@ public class BaseFragment extends Fragment implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object data) {
+    public void update(final Observable observable, final Object data) {
         if (data instanceof Event) {
-            handleEvent((Event) data);
+            this.handleEvent((Event) data);
         }
     }
 
-    public void sendEvent(int event) {
+    public void sendEvent(final int event) {
         AppObservable.getInstance().notifyObservers(Event.of(event));
     }
 
-    public void handleEvent(Event event) {
+    public void handleEvent(final Event event) {
         //override this function in child class to handle the received event if need
     }
 }

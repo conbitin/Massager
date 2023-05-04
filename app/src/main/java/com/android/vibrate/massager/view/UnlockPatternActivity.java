@@ -28,26 +28,26 @@ public class UnlockPatternActivity extends AppCompatActivity {
     AppViewModel mAppViewModel;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.self().getAppComponent().inject(this);
-        mBinding = ActivityUnlockVibrationBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
+        this.mBinding = ActivityUnlockVibrationBinding.inflate(this.getLayoutInflater());
+        this.setContentView(this.mBinding.getRoot());
 
-        mBinding.unlockButton.setOnLongClickListener(new View.OnLongClickListener() {
+        this.mBinding.unlockButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public boolean onLongClick(final View view) {
 //                Toast.makeText(UnlockPatternActivity.this, "Unlocked", Toast.LENGTH_LONG).show();
-                finish();
+                UnlockPatternActivity.this.finish();
                 return true;
             }
         });
 
-        String pattern = getIntent().getStringExtra("PATTERN_NAME");
+        String pattern = this.getIntent().getStringExtra("PATTERN_NAME");
         if (TextUtils.isEmpty(pattern)) {
             pattern =  App.self().getString(R.string.app_name);
         }
-        mBinding.itemLockedText.setText(getString(R.string.message_is_locked, pattern));
+        this.mBinding.itemLockedText.setText(this.getString(R.string.message_is_locked, pattern));
     }
 
     @Override

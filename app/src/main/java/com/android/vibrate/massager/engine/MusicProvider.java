@@ -15,34 +15,34 @@ public class MusicProvider {
     private static final String TAG = MusicProvider.class.getSimpleName();
     private static MusicProvider sInstance;
 
-    private ArrayList<Music> mMusics = new ArrayList<>();
+    private final ArrayList<Music> mMusics = new ArrayList<>();
 
 
     private MusicProvider() {
-        prepareList();
+        this.prepareList();
     }
 
     public static MusicProvider getInstance() {
-        if (sInstance == null) {
+        if (MusicProvider.sInstance == null) {
             synchronized (MusicProvider.class) {
-                if (sInstance == null) {
-                    sInstance = new MusicProvider();
+                if (MusicProvider.sInstance == null) {
+                    MusicProvider.sInstance = new MusicProvider();
                 }
             }
         }
-        return sInstance;
+        return MusicProvider.sInstance;
     }
 
     public ArrayList<Music> getMusics() {
-        return mMusics;
+        return this.mMusics;
     }
 
     public void prepareList() {
-        mMusics.add(Music.create(0, App.self().getString(R.string.no_music)));
-        mMusics.add(Music.create(R.raw.birds, "Birds"));
-        mMusics.add(Music.create(R.raw.fire, "Fire"));
-        mMusics.add(Music.create(R.raw.rain, "Rain"));
-        mMusics.add(Music.create(R.raw.rain2, "Rain2"));
-        mMusics.add(Music.create(R.raw.sea, "Sea"));
+        this.mMusics.add(Music.create(0, App.self().getString(R.string.no_music)));
+        this.mMusics.add(Music.create(R.raw.birds, "Birds"));
+        this.mMusics.add(Music.create(R.raw.fire, "Fire"));
+        this.mMusics.add(Music.create(R.raw.rain, "Rain"));
+        this.mMusics.add(Music.create(R.raw.rain2, "Rain2"));
+        this.mMusics.add(Music.create(R.raw.sea, "Sea"));
     }
 }

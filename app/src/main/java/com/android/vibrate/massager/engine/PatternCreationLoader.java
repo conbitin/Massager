@@ -22,50 +22,50 @@ public class PatternCreationLoader {
 
 
     private PatternCreationLoader() {
-        loadPatternCreatorList();
+        this.loadPatternCreatorList();
     }
 
     public static PatternCreationLoader getInstance() {
-        if (sInstance == null) {
+        if (PatternCreationLoader.sInstance == null) {
             synchronized (PatternCreationLoader.class) {
-                if (sInstance == null) {
-                    sInstance = new PatternCreationLoader();
+                if (PatternCreationLoader.sInstance == null) {
+                    PatternCreationLoader.sInstance = new PatternCreationLoader();
                 }
             }
         }
-        return sInstance;
+        return PatternCreationLoader.sInstance;
     }
 
-    public void saveCreatedPattern(Pattern pattern) {
+    public void saveCreatedPattern(final Pattern pattern) {
         if (pattern == null || pattern.pattern == null || pattern.pattern.length == 0 || pattern.type != Pattern.TYPE_CUSTOM) return;
         if (TextUtils.isEmpty(pattern.title)) pattern.title = "No Name";
-        mPatterns.add(0, pattern);
-        saveCreatedPattern(mPatterns);
+        this.mPatterns.add(0, pattern);
+        this.saveCreatedPattern(this.mPatterns);
         PatternProvider.getInstance().refreshListAfterCreateSuccess();
     }
 
-    private void saveCreatedPattern(ArrayList<Pattern> list)
+    private void saveCreatedPattern(final ArrayList<Pattern> list)
     {
         //convert to string using gson
-        Gson gson = new Gson();
-        String hashMapString = gson.toJson(list);
+        final Gson gson = new Gson();
+        final String hashMapString = gson.toJson(list);
         Settings.setSettings(Settings.KEY_PATTERN, hashMapString);
     }
 
     public ArrayList<Pattern> getAllCreatedPattern() {
-        return mPatterns;
+        return this.mPatterns;
     }
 
     public void loadPatternCreatorList() {
         try {
-            String storedPatternListString = Settings.getStringSettings(Settings.KEY_PATTERN, "{}");
-            java.lang.reflect.Type type = new TypeToken<ArrayList<Pattern>>() {
+            final String storedPatternListString = Settings.getStringSettings(Settings.KEY_PATTERN, "{}");
+            final java.lang.reflect.Type type = new TypeToken<ArrayList<Pattern>>() {
             }.getType();
-            Gson gson = new Gson();
-            mPatterns = gson.fromJson(storedPatternListString, type);
-        } catch (Exception e) {}
-        if (mPatterns == null) {
-            mPatterns =new ArrayList<>();
+            final Gson gson = new Gson();
+            this.mPatterns = gson.fromJson(storedPatternListString, type);
+        } catch (final Exception e) {}
+        if (this.mPatterns == null) {
+            this.mPatterns =new ArrayList<>();
         }
     }
 

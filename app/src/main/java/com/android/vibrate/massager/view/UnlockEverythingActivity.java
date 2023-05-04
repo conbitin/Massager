@@ -20,17 +20,18 @@ public class UnlockEverythingActivity extends AppCompatActivity {
     ActivityUnlockEverythingBinding mBinding;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = ActivityUnlockEverythingBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
+        this.mBinding = ActivityUnlockEverythingBinding.inflate(this.getLayoutInflater());
+        this.setContentView(this.mBinding.getRoot());
 
-        mBinding.tryForFreeButton.setOnClickListener(view -> {
-            Toast.makeText(UnlockEverythingActivity.this, "Try For Free Clicked", Toast.LENGTH_LONG).show();
-            finish();
+        this.mBinding.tryForFreeButton.setOnClickListener(view -> {
+            Toast.makeText(this, "Try For Free Clicked", Toast.LENGTH_LONG).show();
+            this.finish();
         });
 
-        mBinding.backButton.setOnClickListener(view -> { finish(); });
+        this.mBinding.backButton.setOnClickListener(view -> {
+            this.finish(); });
     }
 
     @Override

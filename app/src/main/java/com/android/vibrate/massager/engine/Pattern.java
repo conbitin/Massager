@@ -17,7 +17,7 @@ public class Pattern {
     public static final int TYPE_CUSTOM = 3;
 
     @SerializedName("pattern")
-    public long[] pattern = new long[] {};
+    public long[] pattern = {};
 
     public int pic = R.drawable.ic_pattern_creation_icon;
 
@@ -25,5 +25,5 @@ public class Pattern {
     public String title;
 
     @SerializedName("type")
-    public int type = TYPE_LOCK;
+    public int type = Pattern.TYPE_LOCK;
 }

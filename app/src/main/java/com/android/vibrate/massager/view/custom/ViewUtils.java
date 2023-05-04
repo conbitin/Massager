@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 public class ViewUtils {
-    public static void setAlphaExit(View parentView) {
+    public static void setAlphaExit(final View parentView) {
         if (parentView == null) {
             Log.i("ViewUtils", "View was removed from window");
             return;
@@ -29,19 +29,19 @@ public class ViewUtils {
                 .alpha(0)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animation) {
+                    public void onAnimationEnd(final Animator animation) {
                         super.onAnimationEnd(animation);
                         parentView.setVisibility(View.GONE);
                     }
 
                     @Override
-                    public void onAnimationStart(Animator animation) {
+                    public void onAnimationStart(final Animator animation) {
                         super.onAnimationStart(animation);
                     }
                 }).start();
     }
 
-    public static void setAlphaEnter(View parentView) {
+    public static void setAlphaEnter(final View parentView) {
         if (parentView == null || !parentView.isAttachedToWindow()) {
             Log.i("ViewUtils", "View was removed from window");
             return;
@@ -53,39 +53,39 @@ public class ViewUtils {
                 .alpha(1f)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animation) {
+                    public void onAnimationEnd(final Animator animation) {
                         super.onAnimationEnd(animation);
 
                     }
 
                     @Override
-                    public void onAnimationStart(Animator animation) {
+                    public void onAnimationStart(final Animator animation) {
                         super.onAnimationStart(animation);
                     }
                 }).start();
     }
 
-    public static void runAnimationDrawable(boolean isEnable, View view) {
+    public static void runAnimationDrawable(final boolean isEnable, final View view) {
         try {
-            AnimationDrawable loadingAnimation = (AnimationDrawable) view.getBackground();
+            final AnimationDrawable loadingAnimation = (AnimationDrawable) view.getBackground();
             if (isEnable) loadingAnimation.start();
             else loadingAnimation.stop();
-        } catch (Exception e) {}
+        } catch (final Exception e) {}
     }
 
 
-    public static void showFragment(FragmentActivity activity, Fragment fragment, int containerId) {
+    public static void showFragment(final FragmentActivity activity, final Fragment fragment, final int containerId) {
         if (activity == null || fragment == null || fragment.isVisible()) return;
-        FragmentManager fm = activity.getSupportFragmentManager();
+        final FragmentManager fm = activity.getSupportFragmentManager();
         fm.beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                 .add(containerId, fragment)
                 .commit();
     }
 
-    public static void hideFragment(FragmentActivity activity, Fragment fragment) {
+    public static void hideFragment(final FragmentActivity activity, final Fragment fragment) {
         if (activity == null || fragment == null || fragment.isHidden()) return;
-        FragmentManager fm = activity.getSupportFragmentManager();
+        final FragmentManager fm = activity.getSupportFragmentManager();
         fm.beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
                 .remove(fragment)

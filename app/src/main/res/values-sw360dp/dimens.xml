@@ -5,8 +5,8 @@
   -->
 
 <resources>
-    <dimen name="bottom_tab_height">73dp</dimen>
-    <dimen name="bottom_tab_indicator_margin_bottom">62dp</dimen>
+    <dimen name="bottom_tab_height">68dp</dimen>
+    <dimen name="bottom_tab_indicator_margin_bottom">57dp</dimen>
     <dimen name="bottom_tab_indicator_margin_horizontal">33dp</dimen>
-    <dimen name="tab_indicator_size">64dp</dimen>
+    <dimen name="tab_indicator_size">59dp</dimen>
 </resources>

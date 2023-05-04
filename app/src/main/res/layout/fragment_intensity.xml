@@ -49,8 +49,8 @@
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="308dp"
-            android:layout_height="308dp"
+            android:layout_width="267dp"
+            android:layout_height="267dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/intensity_big_button_margin_top">
 
@@ -84,7 +84,7 @@
                     android:gravity="center"
                     android:text="@string/intensity_press_the_button"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:gravity="center"
                     android:text="@string/intensity_to_start_vibration"
                     android:textColor="@color/white"
-                    android:textSize="13sp" />
+                    android:textSize="12dp" />
             </FrameLayout>
 
             <LinearLayout

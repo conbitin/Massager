@@ -21,23 +21,23 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class BaseDialog extends Dialog implements Observer {
-    public BaseDialog(@NonNull Context context) {
+    public BaseDialog(@NonNull final Context context) {
         super(context);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        getWindow().getAttributes().format = PixelFormat.TRANSLUCENT;//trong suot
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        this.getWindow().getAttributes().format = PixelFormat.TRANSLUCENT;//trong suot
     }
 
-    public BaseDialog(@NonNull Context context, int themeResId) {
+    public BaseDialog(@NonNull final Context context, final int themeResId) {
         super(context, themeResId);
     }
 
-    protected BaseDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected BaseDialog(@NonNull final Context context, final boolean cancelable, @Nullable final OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
 
     @Override
-    public void update(Observable observable, Object o) {
+    public void update(final Observable observable, final Object o) {
 
     }
 

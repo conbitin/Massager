@@ -16,50 +16,50 @@ import com.android.vibrate.massager.core.App;
 public class VibrationEngine {
     private static final String TAG = VibrationEngine.class.getSimpleName();
     private static VibrationEngine sInstance;
-    private Vibrator mVibrator;
+    private final Vibrator mVibrator;
 
-    private AudioAttributes mAudioAttributes;
+    private final AudioAttributes mAudioAttributes;
 
     private VibrationEngine() {
-        mVibrator = App.self().getSystemService(Vibrator.class);
-        AudioAttributes.Builder builder = new AudioAttributes.Builder();
+        this.mVibrator = App.self().getSystemService(Vibrator.class);
+        final AudioAttributes.Builder builder = new AudioAttributes.Builder();
         builder.setUsage(AudioAttributes.USAGE_UNKNOWN);
-        mAudioAttributes = builder.build();
+        this.mAudioAttributes = builder.build();
     }
 
     public static VibrationEngine getInstance() {
-        if (sInstance == null) {
+        if (VibrationEngine.sInstance == null) {
             synchronized (VibrationEngine.class) {
-                if (sInstance == null) {
-                    sInstance = new VibrationEngine();
+                if (VibrationEngine.sInstance == null) {
+                    VibrationEngine.sInstance = new VibrationEngine();
                 }
             }
         }
 
-        return sInstance;
+        return VibrationEngine.sInstance;
     }
 
-    public void playPatternNoRepeat(long [] pattern) {
-        stop();
+    public void playPatternNoRepeat(final long [] pattern) {
+        this.stop();
         if (pattern != null && pattern.length > 0) {
-            mVibrator.vibrate(pattern, -1);
+            this.mVibrator.vibrate(pattern, -1);
         }
     }
 
-    public void playPattern(long [] pattern) {
-        stop();
+    public void playPattern(final long [] pattern) {
+        this.stop();
         if (pattern != null && pattern.length > 0) {
-            mVibrator.vibrate(pattern, 1);
+            this.mVibrator.vibrate(pattern, 1);
         }
     }
 
-    private void play(Pattern pattern, float pauseTimeRate, float intensityRate) {
-        playPattern(remakePatternWaveform(pattern, pauseTimeRate, intensityRate));
+    private void play(final Pattern pattern, final float pauseTimeRate, final float intensityRate) {
+        this.playPattern(this.remakePatternWaveform(pattern, pauseTimeRate, intensityRate));
     }
 
-    private long[] remakePatternWaveform(Pattern pattern, float intervalRate, float intensityRate) {
+    private long[] remakePatternWaveform(final Pattern pattern, final float intervalRate, final float intensityRate) {
         if (pattern == null || pattern.pattern == null) return new long[0];
-        long[] waveForm = new long[pattern.pattern.length];
+        final long[] waveForm = new long[pattern.pattern.length];
         for (int i = 0; i < waveForm.length; i ++) {
             waveForm[i] = (long) (pattern.pattern[i] * (i %2 ==0 ? intervalRate : intensityRate));
         }
@@ -67,19 +67,19 @@ public class VibrationEngine {
     }
 
     public void stop() {
-        mVibrator.cancel();
+        this.mVibrator.cancel();
     }
 
-    public void vibrateUpdate(Pattern pattern, float pauseTimeRate, float intensityRate, boolean play) {
-        stop();
+    public void vibrateUpdate(final Pattern pattern, final float pauseTimeRate, final float intensityRate, final boolean play) {
+        this.stop();
         if (play) {
-            play(pattern, pauseTimeRate, intensityRate);
+            this.play(pattern, pauseTimeRate, intensityRate);
         }
     }
 
     public void vibrate() {
-        stop();
-        mVibrator.vibrate(100000);
+        this.stop();
+        this.mVibrator.vibrate(100000);
     }
 
 }

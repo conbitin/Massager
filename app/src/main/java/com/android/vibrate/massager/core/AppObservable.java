@@ -14,19 +14,19 @@ public class AppObservable extends Observable {
     }
 
     public static AppObservable getInstance() {
-        if (sInstance == null) {
+        if (AppObservable.sInstance == null) {
             synchronized (AppObservable.class) {
-                if (sInstance == null) {
-                    sInstance = new AppObservable();
+                if (AppObservable.sInstance == null) {
+                    AppObservable.sInstance = new AppObservable();
                 }
             }
         }
-        return sInstance;
+        return AppObservable.sInstance;
     }
 
     @Override
-    public void notifyObservers(Object arg) {
-        setChanged();
+    public void notifyObservers(final Object arg) {
+        this.setChanged();
         super.notifyObservers(arg);
     }
 }

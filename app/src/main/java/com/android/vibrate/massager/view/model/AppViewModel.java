@@ -20,32 +20,38 @@ public class AppViewModel {
     AppRepository mRepository;
 
     @Inject
-    public AppViewModel(AppRepository repository) {
-        mRepository = repository;
+    public AppViewModel(final AppRepository repository) {
+        this.mRepository = repository;
     }
 
-    public MutableLiveData<Boolean> startButtonState() { return mRepository.startButtonStateData(); }
-    public void toggleVibrationState() { mRepository.toggleVibrationState(); }
-    public void updateVibrationState(boolean start) { mRepository.updateVibrationState(start); }
+    public MutableLiveData<Boolean> startButtonState() { return this.mRepository.startButtonStateData(); }
+    public void toggleVibrationState() {
+        this.mRepository.toggleVibrationState(); }
+    public void updateVibrationState(final boolean start) {
+        this.mRepository.updateVibrationState(start); }
     public boolean isVibrationStarted() {
-        return mRepository.isVibrationStarted();
+        return this.mRepository.isVibrationStarted();
     }
 
-    public MutableLiveData<Float> vibrationIntensityRateData() { return mRepository.vibrationIntensityRateData(); }
-    public void changeVibrationIntensityRate(float level) { mRepository.changeVibrationIntensityRate(level); }
-    public float getVibrationIntensityRate() { return mRepository.getVibrationIntensityRate(); }
+    public MutableLiveData<Float> vibrationIntensityRateData() { return this.mRepository.vibrationIntensityRateData(); }
+    public void changeVibrationIntensityRate(final float level) {
+        this.mRepository.changeVibrationIntensityRate(level); }
+    public float getVibrationIntensityRate() { return this.mRepository.getVibrationIntensityRate(); }
 
-    public MutableLiveData<Float> vibrationPauseTimeRateData() { return mRepository.vibrationPauseRateTimeData(); }
-    public void changeVibrationPauseRateTime(float level) { mRepository.changeVibrationPauseTimeRate(level); }
-    public float getVibrationPauseTimeRate() { return mRepository.getVibrationPauseTimeRate(); }
+    public MutableLiveData<Float> vibrationPauseTimeRateData() { return this.mRepository.vibrationPauseRateTimeData(); }
+    public void changeVibrationPauseRateTime(final float level) {
+        this.mRepository.changeVibrationPauseTimeRate(level); }
+    public float getVibrationPauseTimeRate() { return this.mRepository.getVibrationPauseTimeRate(); }
 
 
-    public MutableLiveData<Pattern> selectedPatternData() { return mRepository.selectedPatternData(); }
-    public void updateSelectedPattern(Pattern pattern) { mRepository.updateSelectedPattern(pattern); }
-    public Pattern getSelectedPattern() { return  mRepository.getSelectedPattern(); }
+    public MutableLiveData<Pattern> selectedPatternData() { return this.mRepository.selectedPatternData(); }
+    public void updateSelectedPattern(final Pattern pattern) {
+        this.mRepository.updateSelectedPattern(pattern); }
+    public Pattern getSelectedPattern() { return this.mRepository.getSelectedPattern(); }
 
-    public MutableLiveData<Music> selectedMusicData() { return mRepository.selectedMusicData(); }
-    public void updateSelectedMusic(Music music) { mRepository.updateSelectedMusic(music); }
-    public Music getSelectedMusic() { return  mRepository.getSelectedMusic(); }
+    public MutableLiveData<Music> selectedMusicData() { return this.mRepository.selectedMusicData(); }
+    public void updateSelectedMusic(final Music music) {
+        this.mRepository.updateSelectedMusic(music); }
+    public Music getSelectedMusic() { return this.mRepository.getSelectedMusic(); }
 }
 

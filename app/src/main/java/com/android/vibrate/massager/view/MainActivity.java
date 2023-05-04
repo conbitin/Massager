@@ -20,6 +20,7 @@ import com.android.vibrate.massager.core.App;
 import com.android.vibrate.massager.core.AppObservable;
 import com.android.vibrate.massager.core.Event;
 import com.android.vibrate.massager.databinding.ActivityMainBinding;
+import com.android.vibrate.massager.engine.MusicEngine;
 import com.android.vibrate.massager.engine.PatternProvider;
 import com.android.vibrate.massager.engine.VibrationEngine;
 import com.android.vibrate.massager.view.custom.ViewUtils;
@@ -45,20 +46,23 @@ public class MainActivity extends FragmentActivity implements Observer {
 
     @SuppressLint("WrongConstant")
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.self().getAppComponent().inject(this);
         AppObservable.getInstance().addObserver(this);
 
-        Log.i(TAG, "onCreate");
-        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
-        mBinding.viewPager.setOffscreenPageLimit(PAGE_COUNT);
-        mBinding.viewPager.setUserInputEnabled(false); //prevent swipe
-        initFragments();
-        mBinding.tabSettings.setOnClickListener(view -> { handleTabClick(POS_SETTINGS_PAGE); });
-        mBinding.tabIntensity.setOnClickListener(view -> { handleTabClick(POS_INTENSITY_PAGE); });
-        mBinding.tabPattern.setOnClickListener(view -> { handleTabClick(POS_PATTERN); });
+        Log.i(MainActivity.TAG, "onCreate");
+        this.mBinding = ActivityMainBinding.inflate(this.getLayoutInflater());
+        this.setContentView(this.mBinding.getRoot());
+        this.mBinding.viewPager.setOffscreenPageLimit(MainActivity.PAGE_COUNT);
+        this.mBinding.viewPager.setUserInputEnabled(false); //prevent swipe
+        this.initFragments();
+        this.mBinding.tabSettings.setOnClickListener(view -> {
+            this.handleTabClick(MainActivity.POS_SETTINGS_PAGE); });
+        this.mBinding.tabIntensity.setOnClickListener(view -> {
+            this.handleTabClick(MainActivity.POS_INTENSITY_PAGE); });
+        this.mBinding.tabPattern.setOnClickListener(view -> {
+            this.handleTabClick(MainActivity.POS_PATTERN); });
 
 
     }
@@ -66,50 +70,51 @@ public class MainActivity extends FragmentActivity implements Observer {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ViewUtils.setAlphaExit(mBinding.splashView);
+        ViewUtils.setAlphaExit(this.mBinding.splashView);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, "onCreate");
+        Log.i(MainActivity.TAG, "onCreate");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, "onResume");
+        Log.i(MainActivity.TAG, "onResume");
     }
 
     @Override
     protected void onPause() {
-        Log.i(TAG, "onPause");
+        Log.i(MainActivity.TAG, "onPause");
         super.onPause();
     }
 
 
     @Override
     protected void onStop() {
-        Log.i(TAG, "onStop");
+        Log.i(MainActivity.TAG, "onStop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.i(TAG, "onDestroy");
+        Log.i(MainActivity.TAG, "onDestroy");
         AppObservable.getInstance().deleteObserver(this);
-        mBinding = null;
+        this.mBinding = null;
         super.onDestroy();
     }
 
     @Override
-    public void update(Observable observable, Object data) {
+    public void update(final Observable observable, final Object data) {
         if (data == null || !(data instanceof Event)) return;
-        Event event = (Event) data;
+        final Event event = (Event) data;
         switch (event.getEventCode()) {
             case Event.EVENT_TOGGLE_START_VIBRATION:
-                VibrationEngine.getInstance().vibrateUpdate(mAppViewModel.getSelectedPattern(), mAppViewModel.getVibrationPauseTimeRate(), mAppViewModel.getVibrationIntensityRate(), !mAppViewModel.isVibrationStarted());
-                mAppViewModel.toggleVibrationState();
+                VibrationEngine.getInstance().vibrateUpdate(this.mAppViewModel.getSelectedPattern(), this.mAppViewModel.getVibrationPauseTimeRate(), this.mAppViewModel.getVibrationIntensityRate(), !this.mAppViewModel.isVibrationStarted());
+                MusicEngine.getInstance().musicUpdate(this.mAppViewModel.getSelectedMusic(), !this.mAppViewModel.isVibrationStarted());
+                this.mAppViewModel.toggleVibrationState();
                 break;
 
             case Event.EVENT_SHOW_SHARE_THE_APP:
@@ -149,21 +154,21 @@ public class MainActivity extends FragmentActivity implements Observer {
 
 
     private void initFragments() {
-        mPatternFragment = new PatternFragment();
-        mBinding.viewPager.setAdapter(new PagerAdapter(this));
-        mTabLayoutMediator = new TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager, true, (tab, position) -> {
+        this.mPatternFragment = new PatternFragment();
+        this.mBinding.viewPager.setAdapter(new PagerAdapter(this));
+        this.mTabLayoutMediator = new TabLayoutMediator(this.mBinding.tabLayout, this.mBinding.viewPager, true, (tab, position) -> {
             switch (position) {
-                case POS_SETTINGS_PAGE:
+                case MainActivity.POS_SETTINGS_PAGE:
                     tab.setText("Settings");
                     break;
 
-                case POS_INTENSITY_PAGE:
+                case MainActivity.POS_INTENSITY_PAGE:
                     tab.setText("Intensity");
                     break;
             }
 
         });
-        handleTabClick(POS_INTENSITY_PAGE);
+        this.handleTabClick(MainActivity.POS_INTENSITY_PAGE);
 
     }
 
@@ -174,18 +179,18 @@ public class MainActivity extends FragmentActivity implements Observer {
 
     private class PagerAdapter extends FragmentStateAdapter {
 
-        public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        public PagerAdapter(@NonNull final FragmentActivity fragmentActivity) {
             super(fragmentActivity);
         }
 
         @NonNull
         @Override
-        public Fragment createFragment(int position) {
+        public Fragment createFragment(final int position) {
             switch (position) {
-                case POS_SETTINGS_PAGE:
+                case MainActivity.POS_SETTINGS_PAGE:
                     return new SettingsFragment();
 
-                case POS_INTENSITY_PAGE:
+                case MainActivity.POS_INTENSITY_PAGE:
                     return new IntensityFragment();
             }
             return null;
@@ -193,18 +198,18 @@ public class MainActivity extends FragmentActivity implements Observer {
 
         @Override
         public int getItemCount() {
-            return PAGE_COUNT;
+            return MainActivity.PAGE_COUNT;
         }
     }
 
-    private void handleTabClick(int pos) {
-        mBinding.appTabIndicator.setTabSelected(pos);
-        mBinding.appTabView.setTabSelected(pos);
-        if (pos != POS_PATTERN) {
-            ViewUtils.hideFragment(this, mPatternFragment);
-            mBinding.viewPager.setCurrentItem(pos);
+    private void handleTabClick(final int pos) {
+        this.mBinding.appTabIndicator.setTabSelected(pos);
+        this.mBinding.appTabView.setTabSelected(pos);
+        if (pos != MainActivity.POS_PATTERN) {
+            ViewUtils.hideFragment(this, this.mPatternFragment);
+            this.mBinding.viewPager.setCurrentItem(pos);
         } else {
-            ViewUtils.showFragment(this, mPatternFragment, mBinding.containerFragment.getId());
+            ViewUtils.showFragment(this, this.mPatternFragment, this.mBinding.containerFragment.getId());
         }
     }
 

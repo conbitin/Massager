@@ -29,88 +29,88 @@ import java.util.Observable;
 public class CreationPatternDialog extends BaseDialog {
     DialogPatternCreatorBinding binding;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
-    private Runnable mPlayCompletedRunnable = () -> {
-        binding.patternCreatorStatus.setText(R.string.done);
-        binding.positiveButton.setText(R.string.save);
-        binding.positiveButton.setAlpha(1.0f);
-        binding.positiveButton.setEnabled(true);
+    private final Runnable mPlayCompletedRunnable = () -> {
+        this.binding.patternCreatorStatus.setText(R.string.done);
+        this.binding.positiveButton.setText(R.string.save);
+        this.binding.positiveButton.setAlpha(1.0f);
+        this.binding.positiveButton.setEnabled(true);
         //binding.patternCreatorControl.setVisibility(View.GONE);
     };
 
-    public CreationPatternDialog(@NonNull Activity activity) {
+    public CreationPatternDialog(@NonNull final Activity activity) {
         super(activity);
-        setContentView((binding = DialogPatternCreatorBinding.inflate(activity.getLayoutInflater())).getRoot());
-        binding.backButton.setOnClickListener(view -> {
-            dismiss();
+        this.setContentView((this.binding = DialogPatternCreatorBinding.inflate(activity.getLayoutInflater())).getRoot());
+        this.binding.backButton.setOnClickListener(view -> {
+            this.dismiss();
         });
-        binding.negativeButton.setOnClickListener(view -> {
-            dismiss();
+        this.binding.negativeButton.setOnClickListener(view -> {
+            this.dismiss();
         });
-        binding.positiveButton.setOnClickListener(view -> {
-            if (!isStoppedRecording) {
-                if (waveForm != null && !waveForm.isEmpty()) {
-                    isStoppedRecording = true;
-                    VibrationEngine.getInstance().playPatternNoRepeat(getRecordingPattern());
-                    binding.patternCreatorStatus.setText(R.string.playing);
-                    binding.textPatternControlStatus.setText(R.string.again);
-                    binding.imgPatternControlStatus.setSelected(true);
+        this.binding.positiveButton.setOnClickListener(view -> {
+            if (!this.isStoppedRecording) {
+                if (this.waveForm != null && !this.waveForm.isEmpty()) {
+                    this.isStoppedRecording = true;
+                    VibrationEngine.getInstance().playPatternNoRepeat(this.getRecordingPattern());
+                    this.binding.patternCreatorStatus.setText(R.string.playing);
+                    this.binding.textPatternControlStatus.setText(R.string.again);
+                    this.binding.imgPatternControlStatus.setSelected(true);
 
-                    binding.positiveButton.setText(R.string.save);
-                    binding.positiveButton.setEnabled(false);
-                    binding.positiveButton.setAlpha(0.5f);
+                    this.binding.positiveButton.setText(R.string.save);
+                    this.binding.positiveButton.setEnabled(false);
+                    this.binding.positiveButton.setAlpha(0.5f);
 
-                    mHandler.removeCallbacks(mPlayCompletedRunnable);
-                    mHandler.postDelayed(mPlayCompletedRunnable, getDuration());
+                    this.mHandler.removeCallbacks(this.mPlayCompletedRunnable);
+                    this.mHandler.postDelayed(this.mPlayCompletedRunnable, this.getDuration());
                 }
             } else {
-                long[] recordedPattern = getRecordingPattern();
+                final long[] recordedPattern = this.getRecordingPattern();
                 if (recordedPattern != null && recordedPattern.length > 0) {
-                    Pattern pattern = new Pattern();
-                    pattern.title = binding.inputName.getText().toString();
+                    final Pattern pattern = new Pattern();
+                    pattern.title = this.binding.inputName.getText().toString();
                     pattern.type = Pattern.TYPE_CUSTOM;
                     pattern.pattern = recordedPattern;
                     PatternCreationLoader.getInstance().saveCreatedPattern(pattern);
                     AppObservable.getInstance().notifyObservers(Event.of(Event.EVENT_SUCCESS_PATTERN_CREATE));
-                    dismiss();
+                    this.dismiss();
                 }
             }
         });
-        binding.creatorPatternView.setOnTouchListener(onTouchListener);
+        this.binding.creatorPatternView.setOnTouchListener(this.onTouchListener);
 
 
-        binding.patternCreatorControl.setOnClickListener(view -> {
-            if (!isStoppedRecording) {
-                if (waveForm != null && !waveForm.isEmpty()) {
-                    isStoppedRecording = true;
-                    VibrationEngine.getInstance().playPatternNoRepeat(getRecordingPattern());
-                    binding.patternCreatorStatus.setText(R.string.playing);
-                    binding.textPatternControlStatus.setText(R.string.again);
-                    binding.imgPatternControlStatus.setSelected(true);
+        this.binding.patternCreatorControl.setOnClickListener(view -> {
+            if (!this.isStoppedRecording) {
+                if (this.waveForm != null && !this.waveForm.isEmpty()) {
+                    this.isStoppedRecording = true;
+                    VibrationEngine.getInstance().playPatternNoRepeat(this.getRecordingPattern());
+                    this.binding.patternCreatorStatus.setText(R.string.playing);
+                    this.binding.textPatternControlStatus.setText(R.string.again);
+                    this.binding.imgPatternControlStatus.setSelected(true);
 
-                    binding.positiveButton.setText(R.string.save);
-                    binding.positiveButton.setEnabled(false);
-                    binding.positiveButton.setAlpha(0.5f);
+                    this.binding.positiveButton.setText(R.string.save);
+                    this.binding.positiveButton.setEnabled(false);
+                    this.binding.positiveButton.setAlpha(0.5f);
 
-                    mHandler.removeCallbacks(mPlayCompletedRunnable);
-                    mHandler.postDelayed(mPlayCompletedRunnable, getDuration());
+                    this.mHandler.removeCallbacks(this.mPlayCompletedRunnable);
+                    this.mHandler.postDelayed(this.mPlayCompletedRunnable, this.getDuration());
                 }
             } else {
-                if (waveForm != null && !waveForm.isEmpty()) {
-                    VibrationEngine.getInstance().playPatternNoRepeat(getRecordingPattern());
-                    binding.patternCreatorStatus.setText(R.string.playing);
+                if (this.waveForm != null && !this.waveForm.isEmpty()) {
+                    VibrationEngine.getInstance().playPatternNoRepeat(this.getRecordingPattern());
+                    this.binding.patternCreatorStatus.setText(R.string.playing);
 
-                    binding.positiveButton.setText(R.string.save);
-                    binding.positiveButton.setEnabled(false);
-                    binding.positiveButton.setAlpha(0.5f);
+                    this.binding.positiveButton.setText(R.string.save);
+                    this.binding.positiveButton.setEnabled(false);
+                    this.binding.positiveButton.setAlpha(0.5f);
 
-                    mHandler.removeCallbacks(mPlayCompletedRunnable);
-                    mHandler.postDelayed(mPlayCompletedRunnable, getDuration());
+                    this.mHandler.removeCallbacks(this.mPlayCompletedRunnable);
+                    this.mHandler.postDelayed(this.mPlayCompletedRunnable, this.getDuration());
                 }
             }
         });
-        setCancelable(true);
+        this.setCancelable(true);
     }
 
     @Override
@@ -120,9 +120,9 @@ public class CreationPatternDialog extends BaseDialog {
     }
 
     @Override
-    public void update(Observable observable, Object data) {
+    public void update(final Observable observable, final Object data) {
         if (data == null || !(data instanceof Event)) return;
-        Event event = (Event) data;
+        final Event event = (Event) data;
         switch (event.getEventCode()) {
             case Event.EVENT_START_RECORDING_PATTERN:
 
@@ -143,17 +143,17 @@ public class CreationPatternDialog extends BaseDialog {
     long timeUp;
 
     public long[] getRecordingPattern() {
-        long[] pattern = new long[waveForm.size()];
-        for (int i = 0; i < waveForm.size(); i++) {
-            pattern[i] = waveForm.get(i);
+        final long[] pattern = new long[this.waveForm.size()];
+        for (int i = 0; i < this.waveForm.size(); i++) {
+            pattern[i] = this.waveForm.get(i);
         }
         return pattern;
     }
 
     public long getDuration() {
        long sum = 0;
-        for (int i = 0; i < waveForm.size(); i++) {
-            sum += waveForm.get(i);
+        for (int i = 0; i < this.waveForm.size(); i++) {
+            sum += this.waveForm.get(i);
         }
         return sum;
     }
@@ -171,45 +171,45 @@ public class CreationPatternDialog extends BaseDialog {
         super.cancel();
     }
 
-    boolean isStoppedRecording = false;
+    boolean isStoppedRecording;
 
-    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+    private final View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (isStoppedRecording) return false;
-            Log.i("CreatorPatternView", "onTouch " + started + " action: " + motionEvent.getAction() + " timeUp: " + timeUp + " timeDown:" + timeDown);
+        public boolean onTouch(final View view, final MotionEvent motionEvent) {
+            if (CreationPatternDialog.this.isStoppedRecording) return false;
+            Log.i("CreatorPatternView", "onTouch " + CreationPatternDialog.this.started + " action: " + motionEvent.getAction() + " timeUp: " + CreationPatternDialog.this.timeUp + " timeDown:" + CreationPatternDialog.this.timeDown);
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     //add break time
-                    timeDown = System.currentTimeMillis();
-                    if (started) {
-                        if (waveForm.isEmpty()) {
-                            waveForm.add(0l);
+                    CreationPatternDialog.this.timeDown = System.currentTimeMillis();
+                    if (CreationPatternDialog.this.started) {
+                        if (CreationPatternDialog.this.waveForm.isEmpty()) {
+                            CreationPatternDialog.this.waveForm.add(0l);
                         } else {
-                            waveForm.add(timeDown - timeUp);
+                            CreationPatternDialog.this.waveForm.add(CreationPatternDialog.this.timeDown - CreationPatternDialog.this.timeUp);
                         }
                         VibrationEngine.getInstance().vibrate();
-                        binding.patternCreatorControl.setVisibility(View.VISIBLE);
-                        binding.textPatternControlStatus.setText(R.string.stop);
-                        binding.imgPatternControlStatus.setSelected(false);
+                        CreationPatternDialog.this.binding.patternCreatorControl.setVisibility(View.VISIBLE);
+                        CreationPatternDialog.this.binding.textPatternControlStatus.setText(R.string.stop);
+                        CreationPatternDialog.this.binding.imgPatternControlStatus.setSelected(false);
 
-                        binding.positiveButton.setText(R.string.play);
-                        binding.positiveButton.setEnabled(true);
-                        binding.positiveButton.setAlpha(1.0f);
+                        CreationPatternDialog.this.binding.positiveButton.setText(R.string.play);
+                        CreationPatternDialog.this.binding.positiveButton.setEnabled(true);
+                        CreationPatternDialog.this.binding.positiveButton.setAlpha(1.0f);
                     }
                     break;
 
                 case MotionEvent.ACTION_UP:
                     //add vibration time
-                    timeUp = System.currentTimeMillis();
-                    if (started) {
+                    CreationPatternDialog.this.timeUp = System.currentTimeMillis();
+                    if (CreationPatternDialog.this.started) {
                         VibrationEngine.getInstance().stop();
-                        waveForm.add(timeUp - timeDown);
+                        CreationPatternDialog.this.waveForm.add(CreationPatternDialog.this.timeUp - CreationPatternDialog.this.timeDown);
                     } else {
-                        if (timeUp - timeDown >= 2000l) {
-                            started = true;
-                            binding.patternCreatorStatus.setText(getContext().getString(R.string.recording));
-                            binding.patternCreatorSecond.setVisibility(View.GONE);
+                        if (CreationPatternDialog.this.timeUp - CreationPatternDialog.this.timeDown >= 2000l) {
+                            CreationPatternDialog.this.started = true;
+                            CreationPatternDialog.this.binding.patternCreatorStatus.setText(CreationPatternDialog.this.getContext().getString(R.string.recording));
+                            CreationPatternDialog.this.binding.patternCreatorSecond.setVisibility(View.GONE);
                         }
                     }
                     break;

@@ -20,112 +20,112 @@ import javax.inject.Singleton;
 public class AppRepositoryImp implements AppRepository {
     public static final String TAG = "AppRepositoryImp";
 
-    private MutableLiveData<Boolean> startButtonStateLiveData;
+    private final MutableLiveData<Boolean> startButtonStateLiveData;
 
-    private MutableLiveData<Float> vibrationIntensityLiveData;
+    private final MutableLiveData<Float> vibrationIntensityLiveData;
 
-    private MutableLiveData<Float> vibrationPauseTimeLiveData;
+    private final MutableLiveData<Float> vibrationPauseTimeLiveData;
 
-    private MutableLiveData<Pattern> selectedPatternData;
+    private final MutableLiveData<Pattern> selectedPatternData;
 
-    private MutableLiveData<Music> selectedMusicData;
+    private final MutableLiveData<Music> selectedMusicData;
 
 
     @Inject
     public AppRepositoryImp() {
-        startButtonStateLiveData = new MutableLiveData<>();
-        startButtonStateLiveData.setValue(false);
+        this.startButtonStateLiveData = new MutableLiveData<>();
+        this.startButtonStateLiveData.setValue(false);
 
-        vibrationIntensityLiveData = new MutableLiveData<>();
-        vibrationIntensityLiveData.setValue(1f);
+        this.vibrationIntensityLiveData = new MutableLiveData<>();
+        this.vibrationIntensityLiveData.setValue(1f);
 
-        vibrationPauseTimeLiveData = new MutableLiveData<>();
-        vibrationPauseTimeLiveData.setValue(VIBRATION_SPEED_MEDIUM);
+        this.vibrationPauseTimeLiveData = new MutableLiveData<>();
+        this.vibrationPauseTimeLiveData.setValue(AppRepository.VIBRATION_SPEED_MEDIUM);
 
-        selectedPatternData = new MutableLiveData<>();
-        selectedPatternData.setValue(PatternProvider.getInstance().getDefaultPattern());
+        this.selectedPatternData = new MutableLiveData<>();
+        this.selectedPatternData.setValue(PatternProvider.getInstance().getDefaultPattern());
 
-        selectedMusicData = new MutableLiveData<>();
+        this.selectedMusicData = new MutableLiveData<>();
     }
 
     @Override
     public MutableLiveData<Boolean> startButtonStateData() {
-        return startButtonStateLiveData;
+        return this.startButtonStateLiveData;
     }
 
     @Override
     public void toggleVibrationState() {
-        startButtonStateLiveData.postValue(!isVibrationStarted());
+        this.startButtonStateLiveData.postValue(!this.isVibrationStarted());
     }
 
     @Override
-    public void updateVibrationState(boolean start) {
-        startButtonStateLiveData.postValue(start);
+    public void updateVibrationState(final boolean start) {
+        this.startButtonStateLiveData.postValue(start);
     }
 
     @Override
     public boolean isVibrationStarted() {
-        return startButtonStateLiveData.getValue();
+        return this.startButtonStateLiveData.getValue();
     }
 
     @Override
     public MutableLiveData<Float> vibrationIntensityRateData() {
-        return vibrationIntensityLiveData;
+        return this.vibrationIntensityLiveData;
     }
 
     @Override
-    public void changeVibrationIntensityRate(float level) {
-        vibrationIntensityLiveData.postValue(level);
+    public void changeVibrationIntensityRate(final float level) {
+        this.vibrationIntensityLiveData.postValue(level);
     }
 
     @Override
     public float getVibrationIntensityRate() {
-        return vibrationIntensityLiveData.getValue();
+        return this.vibrationIntensityLiveData.getValue();
     }
 
     @Override
     public MutableLiveData<Float> vibrationPauseRateTimeData() {
-        return vibrationPauseTimeLiveData;
+        return this.vibrationPauseTimeLiveData;
     }
 
     @Override
-    public void changeVibrationPauseTimeRate(float level) {
-        vibrationPauseTimeLiveData.postValue(level);
+    public void changeVibrationPauseTimeRate(final float level) {
+        this.vibrationPauseTimeLiveData.postValue(level);
     }
 
     @Override
     public float getVibrationPauseTimeRate() {
-        return vibrationPauseTimeLiveData.getValue();
+        return this.vibrationPauseTimeLiveData.getValue();
     }
 
     @Override
     public MutableLiveData<Pattern> selectedPatternData() {
-        return selectedPatternData;
+        return this.selectedPatternData;
     }
 
     @Override
-    public void updateSelectedPattern(Pattern pattern) {
-        selectedPatternData.postValue(pattern);
+    public void updateSelectedPattern(final Pattern pattern) {
+        this.selectedPatternData.postValue(pattern);
     }
 
     @Override
     public Pattern getSelectedPattern() {
-        return selectedPatternData.getValue();
+        return this.selectedPatternData.getValue();
     }
 
     @Override
     public MutableLiveData<Music> selectedMusicData() {
-        return selectedMusicData;
+        return this.selectedMusicData;
     }
 
     @Override
-    public void updateSelectedMusic(Music music) {
-        selectedMusicData.postValue(music);
+    public void updateSelectedMusic(final Music music) {
+        this.selectedMusicData.postValue(music);
     }
 
     @Override
     public Music getSelectedMusic() {
-        return selectedMusicData.getValue();
+        return this.selectedMusicData.getValue();
     }
 
 

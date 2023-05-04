@@ -17,9 +17,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {
-        RepositoryModule.class,
-})
+@Component(modules = RepositoryModule.class)
 public interface ApplicationComponent {
     /*Common*/
     void inject(MainActivity activity);

@@ -24,51 +24,51 @@ import static com.android.vibrate.massager.view.MainActivity.POS_SETTINGS_PAGE;
 public class AppTabIndicator extends FrameLayout {
 
 
-    public AppTabIndicator(@NonNull Context context) {
+    public AppTabIndicator(@NonNull final Context context) {
         super(context);
-        setTabSelected(POS_SETTINGS_PAGE);
+        this.setTabSelected(POS_SETTINGS_PAGE);
     }
 
-    public AppTabIndicator(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public AppTabIndicator(@NonNull final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
-        setTabSelected(POS_SETTINGS_PAGE);
+        this.setTabSelected(POS_SETTINGS_PAGE);
     }
 
-    public AppTabIndicator(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AppTabIndicator(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setTabSelected(POS_SETTINGS_PAGE);
+        this.setTabSelected(POS_SETTINGS_PAGE);
     }
 
-    public AppTabIndicator(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public AppTabIndicator(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        setTabSelected(POS_SETTINGS_PAGE);
+        this.setTabSelected(POS_SETTINGS_PAGE);
     }
 
-    public void setTabSelected(int pageSelected) {
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) getLayoutParams();
+    public void setTabSelected(final int pageSelected) {
+        final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) this.getLayoutParams();
         switch (pageSelected) {
             case POS_SETTINGS_PAGE:
-                setBackground(App.self().getDrawable(R.drawable.tab_settings_indicator));
+                this.setBackground(App.self().getDrawable(R.drawable.tab_settings_indicator));
 
                 if (params != null) {
                     params.gravity = Gravity.LEFT|Gravity.BOTTOM;
-                    setLayoutParams(params);
+                    this.setLayoutParams(params);
                 }
                 break;
 
             case POS_INTENSITY_PAGE:
-                setBackground(App.self().getDrawable(R.drawable.tab_intensity_indicator));
+                this.setBackground(App.self().getDrawable(R.drawable.tab_intensity_indicator));
                 if (params != null) {
                     params.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
-                    setLayoutParams(params);
+                    this.setLayoutParams(params);
                 }
                 break;
 
             case POS_PATTERN:
-                setBackground(App.self().getDrawable(R.drawable.tab_pattern_indicator));
+                this.setBackground(App.self().getDrawable(R.drawable.tab_pattern_indicator));
                 if (params != null) {
                     params.gravity = Gravity.RIGHT|Gravity.BOTTOM;
-                    setLayoutParams(params);
+                    this.setLayoutParams(params);
                 }
                 break;
         }

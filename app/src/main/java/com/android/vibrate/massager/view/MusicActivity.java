@@ -46,28 +46,32 @@ public class MusicActivity extends AppCompatActivity implements Observer {
     MusicAdapter mMusicAdapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.self().getAppComponent().inject(this);
-        mBinding = ActivityMusicBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
+        this.mBinding = ActivityMusicBinding.inflate(this.getLayoutInflater());
+        this.setContentView(this.mBinding.getRoot());
         AppObservable.getInstance().addObserver(this);
-        mBinding.musicList.setAdapter(mMusicAdapter = new MusicAdapter(this, R.layout.music_item, MusicProvider.getInstance().getMusics(), mAppViewModel));
-        mBinding.backButton.setOnClickListener(view ->  { onBackPressed(); });
-        mBinding.musicDone.setOnClickListener(view -> { finish(); });
+        this.mBinding.musicList.setAdapter(this.mMusicAdapter = new MusicAdapter(this, R.layout.music_item, MusicProvider.getInstance().getMusics(), this.mAppViewModel));
+        this.mBinding.backButton.setOnClickListener(view ->  {
+            this.onBackPressed(); });
+        this.mBinding.musicDone.setOnClickListener(view -> {
+            MusicEngine.getInstance().stopMusic();
+            this.finish(); });
 
-        mAppViewModel.selectedMusicData().observe(this, music -> { mMusicAdapter.notifyDataSetChanged();});
+        this.mAppViewModel.selectedMusicData().observe(this, music -> {
+            this.mMusicAdapter.notifyDataSetChanged();});
     }
 
     @Override
     public void onBackPressed() {
-        mAppViewModel.updateSelectedMusic(null);
+        this.mAppViewModel.updateSelectedMusic(null);
         MusicEngine.getInstance().stopMusic();
         super.onBackPressed();
     }
 
     @Override
-    public void update(Observable observable, Object data) {
+    public void update(final Observable observable, final Object data) {
 
     }
 
@@ -81,22 +85,22 @@ public class MusicActivity extends AppCompatActivity implements Observer {
         AppViewModel viewModel;
         private Music selectedItem;
 
-        public MusicAdapter(@NonNull Context context, int resource, @NonNull List list, AppViewModel viewModel) {
+        public MusicAdapter(@NonNull final Context context, final int resource, @NonNull final List list, final AppViewModel viewModel) {
             super(context, resource, list);
             this.viewModel = viewModel;
-            selectedItem = viewModel.getSelectedMusic();
+            this.selectedItem = viewModel.getSelectedMusic();
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(final int i, View view, final ViewGroup viewGroup) {
             MusicItemBinding binding = null;
             if (view == null) {
-                LayoutInflater inflater = LayoutInflater.from(getContext());
+                final LayoutInflater inflater = LayoutInflater.from(this.getContext());
                 view = inflater.inflate(R.layout.music_item, viewGroup, false);
             }
-            Music music = getItem(i);
+            final Music music = this.getItem(i);
             binding = MusicItemBinding.bind(view);
-            boolean isSelected = isMusicSelected(music);
+            final boolean isSelected = this.isMusicSelected(music);
             binding.getRoot().setActivated(isSelected);
             binding.imgChecked.setVisibility(isSelected ? View.VISIBLE :View.GONE);
             binding.imgPlay.setActivated(isSelected);
@@ -105,11 +109,11 @@ public class MusicActivity extends AppCompatActivity implements Observer {
             binding.imgMusicAnimation.setVisibility(isSelected ? View.VISIBLE :View.GONE);
             ViewUtils.runAnimationDrawable(isSelected, binding.imgMusicAnimation);
             binding.musicName.setText(music.title);
-            binding.musicDuration.setText(millisecondsToTime(music));
+            binding.musicDuration.setText(this.millisecondsToTime(music));
 
             binding.getRoot().setOnClickListener(item -> {
-                selectedItem = music;
-                viewModel.updateSelectedMusic(music);
+                this.selectedItem = music;
+                this.viewModel.updateSelectedMusic(music);
                 if (music.resource != 0) {
                     ThreadExecutors.execute(ThreadExecutors.Where.WORKER, () -> {MusicEngine.getInstance().playMusic(music.resource);});
                 } else {
@@ -119,16 +123,16 @@ public class MusicActivity extends AppCompatActivity implements Observer {
             return view;
         }
 
-        private boolean isMusicSelected(Music music) {
-            return music != null && music.resource != 0 && music == selectedItem;
+        private boolean isMusicSelected(final Music music) {
+            return music != null && music.resource != 0 && music == this.selectedItem;
         }
 
-        private String millisecondsToTime(Music music) {
+        private String millisecondsToTime(final Music music) {
             if (music == null) return "00:00";
             if (music.resource == 0) return App.self().getString(R.string.off);
-            long milliseconds = music.duration;
-            long minutes = (milliseconds / 1000) / 60;
-            long seconds = (milliseconds / 1000) % 60;
+            final long milliseconds = music.duration;
+            final long minutes = (milliseconds / 1000) / 60;
+            final long seconds = (milliseconds / 1000) % 60;
             String secs = seconds +"";
             String minute = minutes +"";
             if (seconds < 10) {

@@ -21,34 +21,34 @@ public class Music {
     public int duration;
     public Music() {}
 
-    public Music(int resource, String title, int duration) {
+    public Music(final int resource, final String title, final int duration) {
         this.resource = resource;
         this.title = title;
         this.duration = duration;
     }
 
 
-    public static Music create(int resource, String title) {
-        return new Music(resource, title, getDuration(resource));
+    public static Music create(final int resource, final String title) {
+        return new Music(resource, title, Music.getDuration(resource));
     }
 
 
-    public static int getDuration(int resource) {
+    public static int getDuration(final int resource) {
         if (resource == 0) return 0;
         try {
-            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-            AssetFileDescriptor fd = App.self().getResources().openRawResourceFd(resource);
+            final MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            final AssetFileDescriptor fd = App.self().getResources().openRawResourceFd(resource);
             if (fd == null) return 0;
             retriever.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
-            String duration = retriever.extractMetadata(METADATA_KEY_DURATION);
+            final String duration = retriever.extractMetadata(METADATA_KEY_DURATION);
             try {
                 fd.close();
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
             retriever.release();
             return Integer.parseInt(duration);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return 0;
         }
     }

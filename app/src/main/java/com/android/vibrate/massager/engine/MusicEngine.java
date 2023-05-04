@@ -20,29 +20,36 @@ public class MusicEngine {
     }
 
     public static MusicEngine getInstance() {
-        if (sInstance == null) {
+        if (MusicEngine.sInstance == null) {
             synchronized (MusicEngine.class) {
-                if (sInstance == null) {
-                    sInstance = new MusicEngine();
+                if (MusicEngine.sInstance == null) {
+                    MusicEngine.sInstance = new MusicEngine();
                 }
             }
         }
-        return sInstance;
+        return MusicEngine.sInstance;
     }
 
 
-    public void playMusic(int source) {
-        stopMusic();
-        mMediaPlayer = MediaPlayer.create(App.self(), source);
-        mMediaPlayer.setLooping(true);
-        mMediaPlayer.start();
+    public void playMusic(final int source) {
+        this.stopMusic();
+        this.mMediaPlayer = MediaPlayer.create(App.self(), source);
+        this.mMediaPlayer.setLooping(true);
+        this.mMediaPlayer.start();
     }
 
     public void stopMusic() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.release();
+        if (this.mMediaPlayer != null) {
+            this.mMediaPlayer.release();
         }
-        mMediaPlayer = null;
+        this.mMediaPlayer = null;
+    }
+
+    public void musicUpdate(final Music music, final boolean play) {
+        this.stopMusic();
+        if (play && music != null && music.resource != 0) {
+            this.playMusic(music.resource);
+        }
     }
 
 }
