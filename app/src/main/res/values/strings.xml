@@ -15,7 +15,7 @@
     <string name="dialog_no_vibration_guide">Settings -> Sound -> Turn ON \n’During a call’ or ‘In silent mode’</string>
     <string name="dialog_go_to_settings">To the settings ></string>
     <string name="dialog_got_it">Got it</string>
-    <string name="message_is_locked">%s is locked</string>
+    <string name="message_is_locked">Massager is locked</string>
     <string name="hold_to_unlock">Hold the button to unlock</string>
     <string name="unlock">Unlock</string>
     <string name="mode">Mode</string>

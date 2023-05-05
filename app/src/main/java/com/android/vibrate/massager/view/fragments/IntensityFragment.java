@@ -6,7 +6,6 @@
 
 package com.android.vibrate.massager.view.fragments;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,6 @@ import static com.android.vibrate.massager.repository.AppRepository.VIBRATION_SP
 import static com.android.vibrate.massager.repository.AppRepository.VIBRATION_SPEED_MEDIUM;
 
 public class IntensityFragment extends BaseFragment {
-    private static final String TAG = IntensityFragment.class.getSimpleName();
 
     private FragmentIntensityBinding mBinding;
 
@@ -105,7 +103,11 @@ public class IntensityFragment extends BaseFragment {
     }
 
 
-
+    @Override
+    public void onStop() {
+        this.sendEvent(Event.EVENT_STOP_VIBRATION_WHEN_EXIT);
+        super.onStop();
+    }
 
     @Override
     public void onDestroyView() {

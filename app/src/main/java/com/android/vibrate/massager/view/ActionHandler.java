@@ -11,28 +11,13 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-
-import androidx.annotation.NonNull;
 
 import com.android.vibrate.massager.BuildConfig;
 import com.android.vibrate.massager.R;
-import com.android.vibrate.massager.core.AppObservable;
-import com.android.vibrate.massager.core.Event;
-import com.android.vibrate.massager.databinding.DialogNoVibrationGuideBinding;
-import com.android.vibrate.massager.databinding.DialogPatternCreatorBinding;
-import com.android.vibrate.massager.engine.Pattern;
-import com.android.vibrate.massager.engine.PatternCreationLoader;
 import com.android.vibrate.massager.view.dialogs.CreationPatternDialog;
 import com.android.vibrate.massager.view.dialogs.NoVibrationDialog;
-
-import java.util.Observable;
-import java.util.Observer;
 
 
 public class ActionHandler {
@@ -90,13 +75,6 @@ public class ActionHandler {
     public static void createVibration(final Activity activity) {
         final CreationPatternDialog dialog = new CreationPatternDialog(activity);
         dialog.show();
-    }
-
-    public static void unlockVibration(final Context context, final String patternName) {
-        final Intent intent = new Intent(context, UnlockPatternActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra("PATTERN_NAME", patternName);
-        context.startActivity(intent);
     }
 
     public static void unlockEverything(final Context context) {

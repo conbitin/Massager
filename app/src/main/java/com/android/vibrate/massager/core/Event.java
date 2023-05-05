@@ -76,4 +76,5 @@ public class Event {
     public static final int EVENT_SHOW_CREATE_VIBRATION     = Event.EVENT_BASE + 9;
     public static final int EVENT_SUCCESS_PATTERN_CREATE    = Event.EVENT_BASE + 10;
     public static final int EVENT_START_RECORDING_PATTERN   = Event.EVENT_BASE + 11;
+    public static final int EVENT_STOP_VIBRATION_WHEN_EXIT  = Event.EVENT_BASE + 12;
 }

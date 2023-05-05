@@ -21,12 +21,12 @@ import com.android.vibrate.massager.core.AppObservable;
 import com.android.vibrate.massager.core.Event;
 import com.android.vibrate.massager.databinding.ActivityMainBinding;
 import com.android.vibrate.massager.engine.MusicEngine;
-import com.android.vibrate.massager.engine.PatternProvider;
 import com.android.vibrate.massager.engine.VibrationEngine;
 import com.android.vibrate.massager.view.custom.ViewUtils;
 import com.android.vibrate.massager.view.fragments.IntensityFragment;
 import com.android.vibrate.massager.view.fragments.PatternFragment;
 import com.android.vibrate.massager.view.fragments.SettingsFragment;
+import com.android.vibrate.massager.view.fragments.UnlockDialogFragment;
 import com.android.vibrate.massager.view.model.AppViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -130,7 +130,7 @@ public class MainActivity extends FragmentActivity implements Observer {
                 break;
 
             case Event.EVENT_SHOW_UNLOCK_PATTERN:
-                ActionHandler.unlockVibration(this, event.getTextValue());
+                ViewUtils.showFragment(this, new UnlockDialogFragment(), android.R.id.content);
                 break;
 
             case Event.EVENT_SHOW_UNLOCK_EVERYTHING:
@@ -147,6 +147,13 @@ public class MainActivity extends FragmentActivity implements Observer {
 
             case Event.EVENT_SHOW_CREATE_VIBRATION:
                 ActionHandler.createVibration(this);
+                break;
+            case Event.EVENT_STOP_VIBRATION_WHEN_EXIT:
+                if (this.mAppViewModel.isVibrationStarted()) {
+                    VibrationEngine.getInstance().stop();
+                    MusicEngine.getInstance().stopMusic();
+                    this.mAppViewModel.toggleVibrationState();
+                }
                 break;
 
         }

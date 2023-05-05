@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.vibrate.massager.databinding.ActivityUnlockEverythingBinding;
-import com.android.vibrate.massager.databinding.ActivityUnlockVibrationBinding;
 
 public class UnlockEverythingActivity extends AppCompatActivity {
     ActivityUnlockEverythingBinding mBinding;

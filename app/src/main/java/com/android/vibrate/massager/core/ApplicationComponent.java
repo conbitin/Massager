@@ -9,7 +9,6 @@ package com.android.vibrate.massager.core;
 import com.android.vibrate.massager.di.RepositoryModule;
 import com.android.vibrate.massager.view.MainActivity;
 import com.android.vibrate.massager.view.MusicActivity;
-import com.android.vibrate.massager.view.UnlockPatternActivity;
 import com.android.vibrate.massager.view.fragments.BaseFragment;
 
 import javax.inject.Singleton;
@@ -23,5 +22,4 @@ public interface ApplicationComponent {
     void inject(MainActivity activity);
     void inject(BaseFragment fragment);
     void inject(MusicActivity activity);
-    void inject(UnlockPatternActivity activity);
 }
